@@ -330,7 +330,7 @@ def main():
         correct = 0
         for data, target in test_loader:
             data, target = Variable(data, volatile=True).to(device), Variable(target).to(device)
-            output = model(data)
+            output = model(data)[0]
             # get the index of the max log-probability
             pred = output.data.max(1, keepdim=True)[1]
             correct += pred.eq(target.data.view_as(pred)).cpu().sum()
